@@ -47,7 +47,3 @@
 - 问小白
 - AskManyAI
 - 纳米AI
-
-## 许可证
-
-MIT许可证 - 详见LICENSE文件。

@@ -43,7 +43,3 @@ A browser extension that allows you to copy mathematical formulas from ArXiv pap
 - Poe
 - OpenRouter
 - Monica
-
-## License
-
-MIT License - see LICENSE file for details.
