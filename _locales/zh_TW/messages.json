@@ -1,0 +1,35 @@
+{
+    "extensionName": {
+        "message": "公式複製：從Arxiv和AI聊天中複製數學公式"
+    },
+    "extensionDescription": {
+        "message": "從Arxiv和AI聊天（DeepSeek、ChatGPT等）中複製數學公式，支援MathML或LaTeX格式。"
+    },
+    "formulaCopied": {
+        "message": "公式已複製！"
+    },
+    "copyFailed": {
+        "message": "複製失敗！"
+    },
+    "clickToCopyFormula": {
+        "message": "點擊複製公式"
+    },
+    "formulaSettingsTitle": {
+        "message": "公式複製設定"
+    },
+    "enableFormulaCopyLabel": {
+        "message": "啟用公式複製功能"
+    },
+    "formulaFormatLabel": {
+        "message": "公式複製格式"
+    },
+    "formatMathMLLabel": {
+        "message": "MathML"
+    },
+    "formatLaTeXLabel": {
+        "message": "LaTeX"
+    },
+    "formulaFormatHint": {
+        "message": "MathML 格式相容更多編輯器，LaTeX 適合專業排版"
+    }
+}

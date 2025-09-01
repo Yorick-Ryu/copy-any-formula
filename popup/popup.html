@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Formula Copy</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <a href="https://github.com/Yorick-Ryu/deep-share" target="_blank" class="github-link">
+    <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+    </svg>
+  </a>
+
+  <div class="popup-container">
+    <!-- Sidebar with tabs -->
+    <div class="sidebar">
+      <div class="title-container">
+        <img src="../icons/formula-copy-icon.svg" alt="Formula Copy" class="title-icon">
+        <h1>Formula Copy</h1>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="formula-tab" id="formulaTabBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024" fill="currentColor"
+            stroke="none">
+            <path
+              d="M149.333333 192a64 64 0 0 1 64-64h640v85.333333H256.789333l286.912 251.050667a64 64 0 0 1 1.642667 94.848l-4.736 4.437333L256.96 810.666667H853.333333v85.333333H213.333333a64 64 0 0 1-64-64v-11.626667a64 64 0 0 1 21.973334-48.256L469.269333 512.64 171.178667 251.818667A64 64 0 0 1 149.333333 203.648V192z">
+            </path>
+          </svg>
+          <span id="formulaTabLabel">公式复制设置</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="content">
+      <!-- Formula Copy Settings Tab Content -->
+      <div class="tab-content active" id="formula-tab">
+        <h2 id="formulaSettingsTitle">公式复制设置</h2>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="enableFormulaCopy" checked>
+          <label for="enableFormulaCopy" id="enableFormulaCopyLabel">启用公式复制功能</label>
+        </div>
+
+        <div class="form-group">
+          <label id="formulaFormatLabel">公式复制格式</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="formatMathML" name="formulaFormat" value="mathml" checked>
+              <label for="formatMathML" id="formatMathMLLabel">MathML</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="formatLaTeX" name="formulaFormat" value="latex">
+              <label for="formatLaTeX" id="formatLaTeXLabel">LaTeX</label>
+            </div>
+          </div>
+          <span class="form-hint" id="formulaFormatHint">MathML 格式兼容更多编辑器，LaTeX 适合专业排版</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

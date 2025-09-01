@@ -1,0 +1,596 @@
+:root {
+  --modal-bg: #ffffff;
+  --modal-text: #333333;
+  --modal-border: #eeeeee;
+  --button-color: rgb(139, 139, 139);
+  --button-hover-bg: rgba(77, 107, 254, 0.1);
+  --button-hover-color: rgb(77, 107, 254);
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --modal-bg: #1e1e1e;
+    --modal-text: #e0e0e0;
+    --modal-border: #333333;
+    --button-color: rgb(205, 212, 223);
+    --button-hover-bg: rgba(77, 107, 254, 0.2);
+    --button-hover-color: rgb(107, 137, 254);
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.header-btn:active {
+  transform: scale(0.95);
+}
+
+.modal-body {
+  padding: 17px 20px 20px 20px;
+  max-height: 80vh;
+  /* 增加最大高度 */
+  overflow-y: auto;
+}
+
+#conversation-content {
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--modal-text);
+}
+
+/* 标签页样式 */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tab-container {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--modal-border);
+  position: relative;
+}
+
+.tab-btn {
+  padding: 6px;
+  background: none;
+  border: none;
+  color: var(--modal-text);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s;
+  min-width: 60px;
+  text-align: center;
+  position: relative;
+}
+
+.tab-btn.active {
+  opacity: 1;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background-color: var(--button-hover-color);
+  transition: transform 0.3s ease;
+  width: 60px;
+}
+
+.tab-btn[data-tab="text"].active ~ .tab-indicator {
+  transform: translateX(calc(100% + 2px));
+}
+
+.tab-btn[data-tab="image"].active ~ .tab-indicator {
+  transform: translateX(0);
+}
+
+/* 面板样式 */
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* 文本容器样式 */
+#text-panel {
+  min-height: 200px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid var(--modal-border);
+  border-radius: 8px;
+  background: var(--modal-bg);
+  position: relative;
+}
+
+#conversation-content {
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--modal-text);
+  padding: 16px;
+  margin: 0;
+}
+
+/* 图片容器样式 */
+.image-container {
+  min-height: 200px;
+  max-height: 70vh;
+  /* 增加图片容器最大高度 */
+  overflow-y: auto;
+  /* 移除底部间距 */
+  border: 1px solid var(--modal-border);
+  border-radius: 8px;
+  /* 增加图片容器圆角 */
+  background: var(--modal-bg);
+  position: relative;
+}
+
+#conversation-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--modal-text);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* 按钮样式 */
+.download-btn,
+.copy-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  background: var(--button-hover-bg);
+  color: var(--button-hover-color);
+  border: 1px solid var(--button-hover-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.download-btn:hover,
+.copy-btn:hover {
+  background: var(--button-hover-color);
+  color: white;
+  opacity: 0.9;
+}
+
+/* 对话选择复选框样式 */
+.message-checkbox-wrapper {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.message-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--button-color);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.message-checkbox:checked {
+  background-color: var(--button-hover-color);
+  border-color: var(--button-hover-color);
+}
+
+.message-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.message-checkbox:hover {
+  border-color: var(--button-hover-color);
+}
+
+.select-all-btn,
+.select-all-responses-btn {
+  margin-right: 8px;
+  padding: 4px 12px;
+  background: none;
+  border: 1px solid var(--button-color);
+  cursor: pointer;
+  color: var(--button-color);
+  border-radius: 4px;
+  font-size: 13px;
+  height: 28px;
+  transition: all 0.2s ease;
+}
+
+.select-all-btn:hover,
+.select-all-responses-btn:hover {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-color);
+  border-color: var(--button-hover-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .select-all-btn,
+  .select-all-responses-btn {
+    color: rgb(205, 212, 223);
+    border-color: rgb(205, 212, 223);
+  }
+
+  .select-all-btn:hover,
+  .select-all-responses-btn:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+  }
+}
+
+/* KaTeX copy functionality styles */
+.katex {
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.katex:hover {
+  background-color: rgba(77, 107, 254, 0.1);
+  border-radius: 4px;
+}
+
+/* Add pulsing animation for KaTeX on click */
+@keyframes katex-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(77, 107, 254, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(77, 107, 254, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(77, 107, 254, 0);
+  }
+}
+
+.katex:active {
+  animation: katex-pulse 0.5s;
+}
+
+/* KaTeX copy notification styles */
+.katex-copy-notification {
+  animation: notification-appear 0.3s ease forwards;
+  white-space: nowrap;
+}
+
+@keyframes notification-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* DOCX button in message panel */
+.deepseek-docx-btn {
+  position: relative;
+  transition: all 0.2s ease;
+  color: var(--button-color) !important;
+}
+
+.deepseek-docx-btn:hover {
+  background-color: var(--button-hover-bg);
+  border-radius: 4px;
+}
+
+.deepseek-docx-btn:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  .deepseek-docx-btn {
+    color: var(--button-color) !important;
+  }
+}
+
+/* Notification styles */
+.deepseek-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  max-width: 300px;
+}
+
+.deepseek-notification.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.deepseek-notification.error {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Show format selector when text tab is active */
+.tab-btn[data-tab="text"].active~.action-buttons .format-dropdown-container {
+  display: inline-block;
+}
+
+/* Format select dropdown styles */
+.format-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.format-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--modal-bg);
+    color: var(--modal-text);
+    border: 1px solid var(--modal-border);
+    border-radius: 4px;
+    padding: 4px 24px 4px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.format-select:hover {
+    border-color: var(--button-hover-color);
+    background: var(--button-hover-bg);
+}
+
+.format-select:focus {
+    border-color: var(--button-hover-color);
+    box-shadow: 0 0 0 2px rgba(77, 107, 254, 0.1);
+}
+
+/* Custom dropdown arrow */
+.format-dropdown-container::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid var(--button-color);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.format-dropdown-container:hover::after {
+    border-top-color: var(--button-hover-color);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .format-select {
+        background: var(--modal-bg);
+        color: var(--modal-text);
+        border-color: var(--modal-border);
+    }
+
+    .format-select:hover {
+        background: var(--button-hover-bg);
+    }
+
+    .format-dropdown-container::after {
+        border-top-color: var(--button-color);
+    }
+
+    .format-dropdown-container:hover::after {
+        border-top-color: var(--button-hover-color);
+    }
+}
+
+/* Tooltips for injected buttons (JS-controlled) */
+.deepshare-gpt-tooltip {
+    position: fixed;
+    background-color: #000000;
+    color: #f5f5f5;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.deepseek-tooltip {
+    position: fixed;
+    background-color: #222222;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 10000;
+}
+
+.deepseek-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #222222;
+}
+
+.deepseek-tooltip-bottom {
+  position: fixed;
+  background-color: #222222;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  z-index: 10000;
+}
+
+.deepseek-tooltip-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #222222;
+}
+
+@media (prefers-color-scheme: dark) {
+    .deepseek-tooltip {
+        background-color: #000000;
+    }
+    
+    .deepseek-tooltip::after {
+        border-top-color: #000000;
+    }
+
+    .deepseek-tooltip-bottom {
+      background-color: #000000;
+  }
+
+    .deepseek-tooltip-bottom::after {
+      border-bottom-color: #000000;
+    }
+}
+
+/* Gemini DOCX Button Styles */
+.deepshare-gemini-docx-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deepshare-gemini-docx-btn .mdc-icon-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    fill: currentColor;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 50%;
+    overflow: visible;
+    transition: background-color 0.2s ease;
+}
+
+.deepshare-gemini-docx-btn .mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #575b5f;
+    position: relative;
+    z-index: 1;
+    font-family: 'Google Symbols', 'Material Symbols Outlined', 'Material Icons', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+
+.deepshare-gemini-docx-btn .mdc-icon-button:hover {
+    background-color: rgba(11, 87, 208, 0.018);
+}
+
+.deepshare-gemini-docx-btn .mdc-icon-button:focus {
+    background-color: rgba(11, 87, 208, 0.022);
+}
+
+.deepshare-gemini-docx-btn .mdc-icon-button:active {
+    background-color: rgba(11, 87, 208, 0.061);
+}
+
+@media (prefers-color-scheme: dark) {
+   .deepshare-gemini-docx-btn .mat-icon {
+      color: #a2a9b0;
+   }
+   .deepshare-gemini-docx-btn .mdc-icon-button:hover {
+    background-color: #a8c7fa14;
+  }
+
+  .deepshare-gemini-docx-btn .mdc-icon-button:focus {
+      background-color: #a8c7fa1f;
+  }
+
+  .deepshare-gemini-docx-btn .mdc-icon-button:active {
+      background-color: #a8c7fa26;
+  }
+}
+
+
+/* Ripple effect - ensuring circular shape */
+.deepshare-gemini-docx-btn .mdc-icon-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}

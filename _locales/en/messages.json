@@ -1,0 +1,35 @@
+{
+    "extensionName": {
+        "message": "Formula Copy: Copy Math Formulas from Arxiv and AI Chats"
+    },
+    "extensionDescription": {
+        "message": "Copy mathematical formulas from Arxiv and AI chats (DeepSeek, ChatGPT, etc.) in MathML or LaTeX format."
+    },
+    "formulaCopied": {
+        "message": "Formula copied!"
+    },
+    "copyFailed": {
+        "message": "Copy failed!"
+    },
+    "clickToCopyFormula": {
+        "message": "Click to copy formula"
+    },
+    "formulaSettingsTitle": {
+        "message": "Formula Copy Settings"
+    },
+    "enableFormulaCopyLabel": {
+        "message": "Enable Formula Copy"
+    },
+    "formulaFormatLabel": {
+        "message": "Formula Copy Format"
+    },
+    "formatMathMLLabel": {
+        "message": "MathML"
+    },
+    "formatLaTeXLabel": {
+        "message": "LaTeX"
+    },
+    "formulaFormatHint": {
+        "message": "MathML is compatible with more editors, LaTeX is for professional typesetting"
+    }
+}
