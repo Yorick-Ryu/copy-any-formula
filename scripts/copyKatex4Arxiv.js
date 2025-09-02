@@ -9,6 +9,12 @@ let formulaSettings = {
     formulaFormat: 'mathml'   // 默认使用 MathML
 };
 
+// Helper: strip trailing punctuation commonly appended after formulas
+function stripTrailingPunctuation(text) {
+    if (!text) return text;
+    return text.replace(/[\s]*([,\.，。；;：:！？!？])$/u, '');
+}
+
 // Function to add copy functionality to arXiv MathML formulas
 function enableArxivFormulaCopy() {
     // Find all MathML elements on the page
@@ -41,7 +47,8 @@ async function handleArxivMathClick(e) {
 
     if (annotation) {
         // Trim whitespace from LaTeX code before copying
-        const latexCode = annotation.textContent.trim();
+        let latexCode = annotation.textContent.trim();
+        latexCode = stripTrailingPunctuation(latexCode);
 
         try {
             let textToCopy;

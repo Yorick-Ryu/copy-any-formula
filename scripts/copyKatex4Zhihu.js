@@ -9,6 +9,12 @@ let formulaSettings = {
     formulaFormat: 'mathml'   // 默认使用 MathML
 };
 
+// Helper: strip trailing punctuation commonly appended after formulas
+function stripTrailingPunctuation(text) {
+    if (!text) return text;
+    return text.replace(/[\s]*([,\.，。；;：:！？!？])$/u, '');
+}
+
 // Function to add copy functionality to LaTeX formulas in Zhihu platform
 function enableKatexCopy4Zhihu() {
     // 查找知乎公式元素 - 使用 ztext-math 类
@@ -67,8 +73,8 @@ async function handleFormulaClick(e) {
             let textToCopy;
             // Use the format specified in settings
             if (formulaSettings.formulaFormat === 'latex') {
-                // Copy raw LaTeX
-                textToCopy = latexCode;
+                // Copy raw LaTeX (with trailing punctuation removed)
+                textToCopy = stripTrailingPunctuation(latexCode);
             } else {
                 // Convert LaTeX to MathML
                 textToCopy = convertLatexToMathML(latexCode);

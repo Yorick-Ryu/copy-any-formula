@@ -9,6 +9,12 @@ let formulaSettings = {
     formulaFormat: 'mathml'   // 默认使用 MathML
 };
 
+// Helper: strip trailing punctuation commonly appended after formulas
+function stripTrailingPunctuation(text) {
+    if (!text) return text;
+    return text.replace(/[\s]*([,\.，。；;：:！？!？])$/u, '');
+}
+
 // Function to add copy functionality to LaTeX formulas in Doubao platform
 function enableKatexCopy4Doubao() {
     // Find all elements with data-custom-copy-text attribute
@@ -48,8 +54,8 @@ async function handleLatexClick(e) {
             let textToCopy;
             // Use the format specified in settings
             if (formulaSettings.formulaFormat === 'latex') {
-                // Copy raw LaTeX
-                textToCopy = latexCode;
+                // Copy raw LaTeX (with trailing punctuation removed)
+                textToCopy = stripTrailingPunctuation(latexCode);
             } else {
                 // Convert LaTeX to MathML
                 textToCopy = convertLatexToMathML(latexCode);

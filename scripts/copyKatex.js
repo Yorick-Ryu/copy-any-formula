@@ -9,6 +9,13 @@ let formulaSettings = {
     formulaFormat: 'mathml'   // 默认使用 MathML
 };
 
+// Helper: strip trailing punctuation commonly appended after formulas
+function stripTrailingPunctuation(text) {
+    if (!text) return text;
+    // Remove one trailing punctuation like , . ， 。 ; ； : ： ! ！ ? ？
+    return text.replace(/[\s]*([,\.，。；;：:！？!？])$/u, '');
+}
+
 // Function to add copy functionality to KaTeX formulas
 function enableKatexCopy() {
     // Find all KaTeX elements on the page
@@ -41,7 +48,9 @@ async function handleKatexClick(e) {
 
     if (annotation) {
         // Trim whitespace from LaTeX code before copying
-        const latexCode = annotation.textContent.trim();
+        let latexCode = annotation.textContent.trim();
+        // Strip trailing punctuation that may belong to surrounding sentence
+        latexCode = stripTrailingPunctuation(latexCode);
 
         try {
             let textToCopy;
