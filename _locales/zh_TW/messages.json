@@ -1,6 +1,6 @@
 {
     "extensionName": {
-        "message": "公式複製：從Arxiv和AI聊天中複製數學公式"
+        "message": "複製公式：ArXiv和AI聊天"
     },
     "extensionDescription": {
         "message": "從Arxiv和AI聊天（DeepSeek、ChatGPT等）中複製數學公式，支援MathML或LaTeX格式。"

@@ -1,6 +1,6 @@
 {
     "extensionName": {
-        "message": "Formula Copy: Copy Math Formulas from Arxiv and AI Chats"
+        "message": "Copy Formula: ArXiv and AI Chats"
     },
     "extensionDescription": {
         "message": "Copy mathematical formulas from Arxiv and AI chats (DeepSeek, ChatGPT, etc.) in MathML or LaTeX format."
